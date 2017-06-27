@@ -1,0 +1,48 @@
+{
+	"HUMAN": {
+		"name": "Human",
+		"modifiers": {
+			"HITPOINTS": {
+				"value": 18
+			},
+			"ABILITY": [
+				{
+				"target": [ "STRENGTH", "DEXTERITY", "CONSTITUTION", "INTELLIGENCE", "WISDOM", "CHARISMA" ],
+				"value": 2	
+				}
+			],
+			"FEATS": {
+				"value": 1
+			},
+			"SKILLS": {
+
+			}
+		}
+	},
+	"KLINGON": {
+		"name": "Klingon",
+		"modifiers": {
+			"HITPOINTS": {
+				"value": 18
+			},
+			"ABILITY": [
+				{ "target": "STRENGTH", "value": 2 },
+				{ "target": "CHARISMA", "value": 2 },
+				{ "target": "WISDOM", "value": -2 }	
+			]
+		}
+	},
+	"ANDROID": {
+		"name": "Android",
+		"modifiers": {
+			"HP": {
+				"value": 18
+			},
+			"ABILITY": [
+				{ "target": "DEXTERITY", "value": 2 },
+				{ "target": "INTELLIGENCE", "value": 2 },
+				{ "target": "CHARISMA", "value": -2 }	
+			]
+		}
+	}
+}
