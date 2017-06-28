@@ -1,24 +1,27 @@
 
-DATA = {
-    BASE: 'data/',
-    
-    load: function() {
-        var d1 = $.get(DATA.BASE + "classes.json", function(data) {
-            DATA.CLASSES = data;
-        });
-        var d2 = $.get(DATA.BASE + "races.json", function(data) {
-            DATA.RACES = data;      
-        });
-        var d3 = $.get(DATA.BASE + "feats.json", function(data) {
-            DATA.FEATS = data;      
-        }); 
-        return $.when(d1, d2, d3);
-    }
-};
+var DEBUG;// = true;
 
-$(document).on('pageinit', function() {
+/* For having a faster transition */
+$(document).on('mobileinit', function() {
+    //$.mobile.defaultPageTransition = 'none';
+    //$.mobile.defaultDialogTransition = 'none';
+});                
+
+$(document).on('pageinit', '#page1', function() {
+    if (DEBUG) {
+        var logf = console.log;
+        console.log = function() {
+            logf(arguments);
+            $.each(arguments, function(i, arg) {
+                $("#debug").append(arg);
+            });
+            $('#debug').append('<br>');
+        }
+    }
+
     console.log('pageinit');
 
+    var pageIdx = 0;
     // Bind the swipeHandler callback function to the swipe event on div.box
     $("body div").on("swipe", function(ev) {
         ev.stopImmediatePropagation();
@@ -39,21 +42,20 @@ $(document).on('pageinit', function() {
     
     });    
 
-    var l = DATA.load();
-
-    l.done(function() {
-        console.log('load complete', DATA);
-        $.each(DATA.RACES, function(id, race) {
-            $('#cd_race').append($('<option>', {
-                value: id, 
-                text: race.name
-            }));
-        });
+    // Populate dropdowns
+    console.log(DATA);
+    $.each(DATA.RACES, function(id, race) {
+        $('#cd_race').append($('<option>', {
+            value: id, 
+            text: race.name
+        }));
     });
-
-    l.fail(function() {
-        console.log('fail', arguments);
-    })
+    $.each(DATA.CLASSES, function(id, clasz) {
+        $('#cd_class').append($('<option>', {
+            value: id, 
+            text: clasz.name
+        }));
+    });
 
 });
 

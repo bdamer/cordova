@@ -37,7 +37,7 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
     <style>
     /* For avoiding title truncation in wp8 */
     .ui-header .ui-title {
@@ -58,10 +58,11 @@
       <div data-role="header">
       </div>
       <div class="ui-content">
-		<label for="cd_race">Race</label><select id="cd_race"></select>
-		<label for="cd_race_flavor">Flavor</label><select id="cd_race_flavor"></select>
-		<label for="cd_class">Class</label><select id="cd_class"></select>
-		<label for="cd_theme">Theme</label><select id="cd_theme"></select>
+		<label for="cd_race">Race</label><select id="cd_race"><option>-- Select Race --</option></select>
+		<label for="cd_race_flavor">Flavor</label><select id="cd_race_flavor"><option>-- Select Flavor --</option></select>
+		<label for="cd_class">Class</label><select id="cd_class"><option>-- Select Class --</option></select>
+		<label for="cd_theme">Theme</label><select id="cd_theme"><option>-- Select Theme --</option></select>
+    <div id="debug"></div>
 	  </div>
       <!-- end page 1 content -->
       <div data-role="footer" data-position="fixed">
@@ -75,7 +76,12 @@
       <div data-role="header">
       </div>
       <div class="ui-content">
-        <p>This is page 2</p>
+        <label for="as_str">STR</label><input id="as_str" value="0" />
+        <label for="as_dex">DEX</label><input id="as_dex" value="0" />
+        <label for="as_con">CON</label><input id="as_con" value="0" />
+        <label for="as_int">INT</label><input id="as_int" value="0" />
+        <label for="as_wis">WIS</label><input id="as_wis" value="0" />
+        <label for="as_cha">CHA</label><input id="as_cha" value="0" />
       </div>
       <!-- end page 2 content -->
       <div data-role="footer" data-position="fixed">
@@ -100,16 +106,14 @@
     <!-- /page3 -->
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
-    <script type="text/javascript" id="jqm-trans-disable">
-		var pageIdx = 0;
-		
-		/* For having a faster transition */
-		$(document).on('mobileinit', function() {
-			//$.mobile.defaultPageTransition = 'none';
-			//$.mobile.defaultDialogTransition = 'none';
-		});                
-	</script>
-    <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript">
+      var DATA;
+    </script>
+    <script type="text/javascript" src="data/races.json"></script>
+    <script type="text/javascript" src="data/classes.json"></script>
+    <script type="text/javascript" src="data/feats.json"></script>
+    <script type="text/javascript" src="js/charbuilder.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
   </body>
 </html>

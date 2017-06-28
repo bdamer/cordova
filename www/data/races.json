@@ -1,48 +1,52 @@
-{
-	"HUMAN": {
-		"name": "Human",
-		"modifiers": {
-			"HITPOINTS": {
-				"value": 18
-			},
-			"ABILITY": [
-				{
-				"target": [ "STRENGTH", "DEXTERITY", "CONSTITUTION", "INTELLIGENCE", "WISDOM", "CHARISMA" ],
-				"value": 2	
-				}
-			],
-			"FEATS": {
-				"value": 1
-			},
-			"SKILLS": {
+(function(){
 
+	DATA = DATA || {};
+
+	DATA.RACES = {
+		HUMAN: {
+			name: "Human",
+
+			add: function(c) {
+				c.setBase('HP', 18);
+				// TODO: add mod
+				c.addMod(this, 'MAX_FEATS', 1);
+			},
+			remove: function(c) {
+				c.setBase('HP', 0);
+				// TODO: remove mod
+				c.removeMod(this, 'MAX_FEATS');
 			}
-		}
-	},
-	"KLINGON": {
-		"name": "Klingon",
-		"modifiers": {
-			"HITPOINTS": {
-				"value": 18
+		},
+		KLINGON: {
+			name: "Klingon",
+			add: function(c) {
+				c.setBase('HP', 18);
+				c.addMod(this, 'STRENGTH', 2);
+				c.addMod(this, 'CHARISMA', 2);
+				c.addMod(this, 'WISDOM', -2);
 			},
-			"ABILITY": [
-				{ "target": "STRENGTH", "value": 2 },
-				{ "target": "CHARISMA", "value": 2 },
-				{ "target": "WISDOM", "value": -2 }	
-			]
-		}
-	},
-	"ANDROID": {
-		"name": "Android",
-		"modifiers": {
-			"HP": {
-				"value": 18
+			remove: function(c) {
+				c.setBase('HP', 0);
+				c.removeMod(this, 'STRENGTH');
+				c.removeMod(this, 'CHARISMA');
+				c.removeMod(this, 'WISDOM');
+			}
+		},
+		ANDROID: {
+			name: "Android",
+			add: function(c) {
+				c.setBase('HP', 18);
+				c.addMod(this, 'DEXTERITY', 2);
+				c.addMod(this, 'INTELLIGENCE', 2);
+				c.addMod(this, 'CHARISMA', -2);
 			},
-			"ABILITY": [
-				{ "target": "DEXTERITY", "value": 2 },
-				{ "target": "INTELLIGENCE", "value": 2 },
-				{ "target": "CHARISMA", "value": -2 }	
-			]
+			remove: function(c) {
+				c.setBase('HP', 0);
+				c.removeMod(this, 'DEXTERITY');
+				c.removeMod(this, 'INTELLIGENCE');
+				c.removeMod(this, 'CHARISMA');
+			}		
 		}
-	}
-}
+	};
+
+})();

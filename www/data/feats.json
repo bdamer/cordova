@@ -1,1 +1,9 @@
-[]
+(function(){
+
+	DATA = DATA || {};
+
+	DATA.FEATS = {
+
+	};
+
+})();

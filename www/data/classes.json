@@ -1,1 +1,35 @@
-[]
+(function() {
+
+	DATA = DATA || {};
+
+	DATA.CLASSES = {
+		FIGHTER: {
+			name: "Fighter",
+			add: function(c) {
+
+			},
+			remove: function(c) {
+
+			}
+		},
+		ROGUE: {
+			name: "Rogue",
+			add: function(c) {
+
+			},
+			remove: function(c) {
+
+			}
+		},
+		MAGE: {
+			name: "Mage",
+			add: function(c) {
+
+			},
+			remove: function(c) {
+				
+			}
+		},
+	};
+
+})();
