@@ -53,43 +53,134 @@
     <title>Cordova Test</title>
   </head>
   <body>
-    <!-- page 1 -->
-    <div data-role="page" id="page1">
+    <!-- character list -->
+	<div data-role="page" data-theme="b" id="character-list">
       <div data-role="header">
       </div>
-      <div class="ui-content">
-		<label for="cd_race">Race</label><select id="cd_race"><option>-- Select Race --</option></select>
-		<label for="cd_race_flavor">Flavor</label><select id="cd_race_flavor"><option>-- Select Flavor --</option></select>
-		<label for="cd_class">Class</label><select id="cd_class"><option>-- Select Class --</option></select>
-		<label for="cd_theme">Theme</label><select id="cd_theme"><option>-- Select Theme --</option></select>
-    <div id="debug"></div>
-	  </div>
-      <!-- end page 1 content -->
+	  <ul data-role="listview" data-inset="true">
+	    <li><a href="#">Mord</a></li>
+		<li><a href="#">Lady Mord</a></li>
+		<li><a href="#">Mord's Dad</a></li>
+		<li data-role="list-divider"></li>
+		<li><a href="#">New Character</a></li>
+	  </ul>
+	  <!-- end character list content -->
+      <div data-role="footer" data-position="fixed">
+        <h1>Character List</h1>
+      </div>
+      <!-- /footer -->
+	</div>
+    <!-- /character list -->
+  
+    <!-- character details -->
+    <div data-role="page" data-theme="b" id="character-details">
+      <div data-role="header">
+      </div>
+      <div class="ui-grid-a">
+		<div class="ui-block-a"><input type="text" id="cd_name" placeholder="Name" /></div>
+		<div class="ui-block-b"><label for="cd_socienty"><input type="checkbox" id="cd_socienty" />Legendary?</label></div>
+		<div class="ui-block-a"><select id="cd_race"><option>Race</option></select></div>
+		<div class="ui-block-b"><select id="cd_race_flavor"><option>Flavor</option></select></div>
+		<div class="ui-block-a"><select id="cd_class"><option>Class</option></select></div>
+		<div class="ui-block-b"><select id="cd_key_ability"><option>Key Ability</option></select></div>
+		<div class="ui-block-a"><select id="cd_theme"><option>Theme</option></select></div>
+		<div class="ui-block-b"><select id="cd_theme_bonuns"><option>Bonus</option></select></div>
+		<hr>
+		<div class="ui-block-a"><input type="text" id="cd_gender" placeholder="Gender" /></div>
+		<div class="ui-block-b"><input type="text" id="cd_home" placeholder="Home" /></div>		
+		<div class="ui-block-a"><input type="number" id="cd_age" placeholder="Age" /></div>
+		<div class="ui-block-b"><input type="text" id="cd_size" placeholder="Size" /></div>
+		<div class="ui-block-a"><select id="cd_alignment"><option>Alignment</option></select></div>
+		<div class="ui-block-b"><select id="cd_deity"><option>Deity</option></select></div>
+      </div>
+	  <!-- end character details content -->
       <div data-role="footer" data-position="fixed">
         <h1>Character Details</h1>
       </div>
       <!-- /footer -->
     </div>
-    <!-- /page1 -->
-    <!-- page 2 -->
-    <div data-role="page" id="page2">
-      <div data-role="header">
-      </div>
-      <div class="ui-content">
-        <label for="as_str">STR</label><input id="as_str" value="0" />
-        <label for="as_dex">DEX</label><input id="as_dex" value="0" />
-        <label for="as_con">CON</label><input id="as_con" value="0" />
-        <label for="as_int">INT</label><input id="as_int" value="0" />
-        <label for="as_wis">WIS</label><input id="as_wis" value="0" />
-        <label for="as_cha">CHA</label><input id="as_cha" value="0" />
-      </div>
-      <!-- end page 2 content -->
+    <!-- /character details -->
+	
+    <!-- abilities -->
+    <div data-role="page" data-theme="b" id="abilities">
+	  <div data-role="tabs" id="tabs">
+        <div data-role="navbar">
+          <ul>
+			<li><a href="#ab_buy" class="ui-btn-active">Buy</a></li>
+			<li><a href="#ab_array">Array</a></li>
+			<li><a href="#ab_roll">Roll</a></li>
+		  </ul>
+        </div>
+	  <div id="ab_buy" class="ui-grid-a">
+		<div class="ui-block-a">
+		  <p style="text-align: center;">
+			Str <span id="ab_str" class="label-ability">10 + 0</span>
+		  </p>
+		</div>
+		<div class="ui-block-b">
+		  <a href="#" data-ability="str" class="ui-btn ui-shadow ui-corner-all ui-icon-minus ui-btn-icon-notext ui-btn-inline btn-ability-dec"></a>
+		  <a href="#" data-ability="str" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext ui-btn-inline btn-ability-inc"></a>
+		</div>		
+		<div class="ui-block-a">
+		  <p style="text-align: center;">
+			Dex <span id="ab_dex" class="label-ability">10 + 0</span>
+		  </p>
+		</div>
+		<div class="ui-block-b">
+		  <a href="#" data-ability="dex" class="ui-btn ui-shadow ui-corner-all ui-icon-minus ui-btn-icon-notext ui-btn-inline btn-ability-dec"></a>
+		  <a href="#" data-ability="dex" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext ui-btn-inline btn-ability-inc"></a>
+		</div>		
+		<div class="ui-block-a">
+		  <p style="text-align: center;">
+			Con <span id="ab_con" class="label-ability">10 + 0</span>
+		  </p>
+		</div>
+		<div class="ui-block-b">
+		  <a href="#" data-ability="con" class="ui-btn ui-shadow ui-corner-all ui-icon-minus ui-btn-icon-notext ui-btn-inline btn-ability-dec"></a>
+		  <a href="#" data-ability="con" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext ui-btn-inline btn-ability-inc"></a>
+		</div>		
+		<div class="ui-block-a">
+		  <p style="text-align: center;">
+			Int <span id="ab_int" class="label-ability">10 + 0</span>
+		  </p>
+		</div>
+		<div class="ui-block-b">
+		  <a href="#" data-ability="int" class="ui-btn ui-shadow ui-corner-all ui-icon-minus ui-btn-icon-notext ui-btn-inline btn-ability-dec"></a>
+		  <a href="#" data-ability="int" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext ui-btn-inline btn-ability-inc"></a>
+		</div>		
+		<div class="ui-block-a">
+		  <p style="text-align: center;">
+			Wis <span id="ab_wis" class="label-ability">10 + 0</span>
+		  </p>
+		</div>
+		<div class="ui-block-b">
+		  <a href="#" data-ability="wis" class="ui-btn ui-shadow ui-corner-all ui-icon-minus ui-btn-icon-notext ui-btn-inline btn-ability-dec"></a>
+		  <a href="#" data-ability="wis" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext ui-btn-inline btn-ability-inc"></a>
+		</div>		
+		<div class="ui-block-a">
+		  <p style="text-align: center;">
+			Cha <span id="ab_cha" class="label-ability">10 + 0</span>
+		  </p>
+		</div>
+		<div class="ui-block-b">
+		  <a href="#" data-ability="cha" class="ui-btn ui-shadow ui-corner-all ui-icon-minus ui-btn-icon-notext ui-btn-inline btn-ability-dec"></a>
+		  <a href="#" data-ability="cha" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext ui-btn-inline btn-ability-inc"></a>
+		</div>
+		<div class="ui-block-a">
+		  <p style="text-align: center;">Points: 0</p>
+		</div>
+		<div class="ui-block-b">
+		</div>
+	  </div>	  
+		  <!-- end abilities content -->
+    	</div>
       <div data-role="footer" data-position="fixed">
         <h1>Ability Scores</h1>
       </div>
       <!-- /footer -->
     </div>
-    <!-- /page2 -->
+    <!-- /abilities -->
+
     <!-- page 3 -->
     <div data-role="page" id="page3">
       <div data-role="header">
@@ -104,6 +195,7 @@
       <!-- /footer -->
     </div>
     <!-- /page3 -->
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
@@ -113,7 +205,9 @@
     <script type="text/javascript" src="data/races.json"></script>
     <script type="text/javascript" src="data/classes.json"></script>
     <script type="text/javascript" src="data/feats.json"></script>
+    <script type="text/javascript" src="data/misc.json"></script>
     <script type="text/javascript" src="js/charbuilder.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+	
   </body>
 </html>

@@ -1,0 +1,26 @@
+(function(){
+
+	DATA = DATA || {};
+
+	DATA.ALIGNMENT = {
+		LAWFUL_GOOD: { name: "Lawful Good" },
+		NEUTRAL_GOOD: { name: "Neutral Good" },
+		CHAOTIC_GOOD: { name: "Chaotic Good" },
+		LAWFUL_NEUTRAL: { name: "Lawful Neutral" },
+		TRUE_NEUTRAL: { name: "True Neutral" },
+		CHAOTIC_Neutral: { name: "Chaotic Neutral" },
+		LAWFUL_EVIL: { name: "Lawful Evil" },
+		NEUTRAL_EVIL: { name: "Neutral Evil" },
+		CHAOTIC_EVIL: { name: "Chaotic Evil" }		
+	};
+	
+	DATA.DEITIES = {
+		CTHULHU: { name: "Cthulhu" },
+		NYARLATHOTEP: { name: "Nyarlathotep" },
+		YOG_SOTHOTH: { name: "Yog-Sothoth" },
+		HASTUR: { name: "Hastur" }	
+	};
+	
+	
+
+})();

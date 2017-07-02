@@ -3,7 +3,7 @@ C = {
 	ATTR: {
 		RACE: null,
 		CLASS_: null,
-		HP: null,
+		HP: null
 	},
 
 	COMPS: {

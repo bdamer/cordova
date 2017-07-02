@@ -1,61 +1,85 @@
+(function() {
+	console.log('init script');
+	
+	DATA = DATA || {};
 
-var DEBUG;// = true;
+	var bind = function(controlId, data) {
+		$.each(data, function(id, val) {
+			$(controlId).append($('<option>', {
+				value: id, 
+				text: val.name
+			}));
+		});
+	};
 
-/* For having a faster transition */
-$(document).on('mobileinit', function() {
-    //$.mobile.defaultPageTransition = 'none';
-    //$.mobile.defaultDialogTransition = 'none';
-});                
-
-$(document).on('pageinit', '#page1', function() {
-    if (DEBUG) {
-        var logf = console.log;
-        console.log = function() {
-            logf(arguments);
-            $.each(arguments, function(i, arg) {
-                $("#debug").append(arg);
-            });
-            $('#debug').append('<br>');
-        }
-    }
-
-    console.log('pageinit');
-
-    var pageIdx = 0;
-    // Bind the swipeHandler callback function to the swipe event on div.box
-    $("body div").on("swipe", function(ev) {
-        ev.stopImmediatePropagation();
-        var dx = ev.swipestop.coords[0] - ev.swipestart.coords[0];
-        var dy = ev.swipestop.coords[1] - ev.swipestart.coords[1];
-        
-        // navigate left
-        if (dx > 0 && pageIdx > 0) {
-            pageIdx--;
-            console.log('page', pageIdx);
-            $.mobile.navigate("#page" + (pageIdx + 1));
-        // navigate right
-        } else if (dx < 0 && pageIdx < 2) {
-            pageIdx++;
-            console.log('page', pageIdx);
-            $.mobile.navigate("#page" + (pageIdx + 1));
-        }
-    
-    });    
-
-    // Populate dropdowns
-    console.log(DATA);
-    $.each(DATA.RACES, function(id, race) {
-        $('#cd_race').append($('<option>', {
-            value: id, 
-            text: race.name
-        }));
-    });
-    $.each(DATA.CLASSES, function(id, clasz) {
-        $('#cd_class').append($('<option>', {
-            value: id, 
-            text: clasz.name
-        }));
-    });
-
-});
-
+	/* For having a faster transition */
+	$(document).on('mobileinit', function() {
+		//$.mobile.defaultPageTransition = 'none';
+		//$.mobile.defaultDialogTransition = 'none';
+		$.mobile.page.prototype.options.domCache = true;
+	});                
+	
+	$(document).on('pagecreate', '#character-list', function() {
+		console.log('init character list');
+		$("#character-list a").click(function() {
+			// TODO: load character
+			$.mobile.navigate("#character-details");
+		});
+	});
+	
+	$(document).on('pagecreate', '#character-details', function() {
+		console.log('init character details');
+		
+		$("#character-details").on('swipe', function(ev) {
+			ev.stopImmediatePropagation();
+			var dx = ev.swipestop.coords[0] - ev.swipestart.coords[0];
+			// navigate left
+			if (dx > 0) {
+				$.mobile.navigate("#character-list");
+			// navigate right
+			} else if (dx < 0) {
+				$.mobile.navigate("#abilities");
+			}		
+		});
+		
+		// Populate dropdowns
+		bind('#cd_race', DATA.RACES);
+		bind('#cd_class', DATA.CLASSES);
+		bind('#cd_alignment', DATA.ALIGNMENT);	
+		bind('#cd_deity', DATA.DEITIES);
+	});
+	
+	$(document).on('pagecreate', '#abilities', function() {
+		console.log('init abilities');
+		
+		$("#abilities").on('swipe', function(ev) {
+			ev.stopImmediatePropagation();
+			var dx = ev.swipestop.coords[0] - ev.swipestart.coords[0];
+			// navigate left
+			if (dx > 0) {
+				$.mobile.navigate("#character-details");
+			// navigate right
+			} else if (dx < 0) {
+			}		
+		});
+		
+		$(".btn-ability-dec").click(function() {
+			var ability = $(this).attr('data-ability');
+			console.log('decrease', ability);
+			var base = C.getBase(ability);
+			base--;
+			C.setBase(ability, base);			
+			$("#ab_" + ability).html(base);
+		});
+		
+		$(".btn-ability-inc").click(function() {
+			var ability = $(this).attr('data-ability');
+			console.log('increase', ability);
+			var base = C.getBase(ability);
+			base++;
+			C.setBase(ability, base);
+			$("#ab_" + ability).html(base);
+		});
+		
+	});
+})();
